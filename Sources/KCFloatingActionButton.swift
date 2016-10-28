@@ -122,11 +122,6 @@ public class KCFloatingActionButton: UIView {
 		Child item's image color
 	*/
 	@IBInspectable public var itemImageColor: UIColor? = nil
-	
-    /**
-        Child item's default shadow color.
-    */
-    @IBInspectable public var itemShadowColor: UIColor = UIColor.blackColor()
     
     /**
     
@@ -247,7 +242,6 @@ public class KCFloatingActionButton: UIView {
         } else {
             setButtonImage()
         }
-        setShadow()
     }
     
     /**
@@ -526,13 +520,6 @@ public class KCFloatingActionButton: UIView {
 			UIScreen.mainScreen().bounds.height
 		)
 	}
-	
-    private func setShadow() {
-        layer.shadowOffset = CGSizeMake(1, 1)
-        layer.shadowRadius = 2
-        layer.shadowColor = UIColor.blackColor().CGColor
-        layer.shadowOpacity = 0.4
-    }
     
     private func plusBezierPath() -> UIBezierPath {
         let path = UIBezierPath()
@@ -550,8 +537,6 @@ public class KCFloatingActionButton: UIView {
 		item.iconImageView.tintColor = itemImageColor ?? plusColor
 		
         item.titleColor = itemTitleColor
-        item.circleShadowColor = itemShadowColor
-        item.titleShadowColor = itemShadowColor
         item.size = itemSize
     }
     

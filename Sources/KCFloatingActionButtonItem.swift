@@ -39,16 +39,7 @@ public class KCFloatingActionButtonItem: UIView {
             titleLabel.textColor = titleColor
         }
     }
-    
-    /**
-     Circle Shadow color.
-     */
-    public var circleShadowColor: UIColor = UIColor.blackColor()
-    
-    /**
-     Title Shadow color.
-     */
-    public var titleShadowColor: UIColor = UIColor.blackColor()
+
     
     /**
      If you touch up inside button, it execute handler.
@@ -106,7 +97,7 @@ public class KCFloatingActionButtonItem: UIView {
     public var iconImageView: UIImageView {
         get {
             if _iconImageView == nil {
-                _iconImageView = UIImageView(frame: CGRectMake(0, 0, 25, 25))
+                _iconImageView = UIImageView(frame: CGRectMake(0, 0, size, size))
                 _iconImageView?.center = CGPointMake(size/2, size/2) + imageOffset
                 _iconImageView?.contentMode = UIViewContentMode.ScaleAspectFill
                 addSubview(_iconImageView!)
@@ -147,8 +138,6 @@ public class KCFloatingActionButtonItem: UIView {
         
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.mainScreen().scale
-        createCircleLayer()
-        setShadow()
         
         if _titleLabel != nil {
             bringSubviewToFront(_titleLabel!)
@@ -175,19 +164,7 @@ public class KCFloatingActionButtonItem: UIView {
         tintLayer.cornerRadius = size/2
         layer.addSublayer(tintLayer)
     }
-    
-    private func setShadow() {
-        circleLayer.shadowOffset = CGSizeMake(1, 1)
-        circleLayer.shadowRadius = 2
-        circleLayer.shadowColor = circleShadowColor.CGColor
-        circleLayer.shadowOpacity = 0.4
-        
-        titleLabel.layer.shadowOffset = CGSizeMake(1, 1)
-        titleLabel.layer.shadowRadius = 2
-        titleLabel.layer.shadowColor = titleShadowColor.CGColor
-        titleLabel.layer.shadowOpacity = 0.4
-    }
-    
+
     public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if touches.count == 1 {
             let touch = touches.first
